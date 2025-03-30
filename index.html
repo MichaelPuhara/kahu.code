@@ -12,6 +12,7 @@
             padding: 0;
             height: 100%;
             overflow-x: hidden;
+            font-family: 'Arial', sans-serif; /* Ensuring a consistent font family */
         }
 
         #launching-soon {
@@ -19,8 +20,20 @@
             margin-top: 20px;
             background: #f0f0f0; /* Light grey background to make it visible */
             padding: 20px;
-            font-size: 20px;
+            font-size: 18px; /* Slightly smaller font size for paragraphs */
             color: #333; /* Darker text for visibility */
+        }
+
+        h1, h2 {
+            font-size: 24px; /* Larger size for headers */
+            color: #0275d8; /* A nice, noticeable blue */
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 16px; /* Standard font size for paragraph text */
+            line-height: 1.5; /* Improved line spacing for readability */
+            color: #666; /* Softer black for body text */
         }
 
         #ask-kahu {
@@ -40,6 +53,22 @@
             height: 50px;
             margin-right: 20px; /* Space between icon and text */
         }
+
+        nav ul {
+            padding: 0;
+        }
+
+        nav ul li {
+            list-style-type: none; /* Removes bullets */
+            display: inline; /* Inline display for a horizontal list */
+            margin-right: 10px;
+        }
+
+        nav a {
+            text-decoration: none; /* No underlines on links */
+            color: #0275d8; /* Matching the header color */
+            font-size: 16px; /* Legible, clickable area */
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -55,7 +84,7 @@
                 <nav>
                     <ul>
                         <li><a href="https://www.linkedin.com/company/kahucode" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                        <li><a href="mailto:hello@kahuco.de" class="icon solid fa-envelope" onclick="checkMailClient()"><span class="label">Email</span></a></li>
+                        <li><a href="mailto:hello@kahuco.de" class="icon solid fa-envelope" id="email-link"><span class="label">Email</span></a></li>
                     </ul>
                 </nav>
             </header>
@@ -85,16 +114,14 @@
         window.ontouchmove = function() { return false; }
         window.onorientationchange = function() { document.body.scrollTop = 0; }
 
-        function checkMailClient() {
-            var testLink = document.createElement('a');
-            testLink.href = 'mailto:test@example.com';
-            if (testLink.protocol === 'mailto:') {
-                return true;
-            } else {
-                alert('No email client configured');
-                return false;
+        document.getElementById('email-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default action
+            var mailtoLink = 'mailto:hello@kahuco.de';
+            var newWindow = window.open(mailtoLink, '_blank');
+            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') { 
+                alert('Your browser is blocking the email client. Please enable pop-ups or check your email settings.');
             }
-        }
+        });
     </script>
 </body>
 </html>
