@@ -7,24 +7,38 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
         #launching-soon {
             text-align: center;
             margin-top: 20px;
+            background: #f0f0f0; /* Light grey background to make it visible */
+            padding: 20px;
+            font-size: 20px;
+            color: #333; /* Darker text for visibility */
         }
 
         #ask-kahu {
-            background-color: #FFFFFF; /* White background */
-            border-radius: 10px; /* Subtle border radius */
-            padding: 20px; /* Comfortable padding */
-            font-family: Arial, sans-serif; /* Sans-serif font family */
-            font-size: 18px; /* Large font size */
-            text-align: center; /* Centered text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            padding: 20px;
+            margin: auto;
+            width: 80%; /* Responsive width */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
         }
 
         #ask-kahu img {
-            width: 50px; /* Icon size */
-            height: 50px; /* Icon size */
-            margin: 0 auto; /* Center the icon */
+            width: 50px;
+            height: 50px;
+            margin-right: 20px; /* Space between icon and text */
         }
     </style>
 </head>
@@ -41,7 +55,7 @@
                 <nav>
                     <ul>
                         <li><a href="https://www.linkedin.com/company/kahucode" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                        <li><a href="mailto:hello@kahuco.de" class="icon solid fa-envelope" target="_blank"><span class="label">Email</span></a></li>
+                        <li><a href="mailto:hello@kahuco.de" class="icon solid fa-envelope" onclick="checkMailClient()"><span class="label">Email</span></a></li>
                     </ul>
                 </nav>
             </header>
@@ -61,7 +75,7 @@
 
             <!-- Footer -->
             <footer id="footer">
-                <span class="copyright">&copy; kahu.code Design 2025 © <a href=></a>.</span>
+                <span class="copyright">&copy; kahu.code Design 2025 ©</span>
             </footer>
 
         </div>
@@ -70,6 +84,17 @@
         window.onload = function() { document.body.classList.remove('is-preload'); }
         window.ontouchmove = function() { return false; }
         window.onorientationchange = function() { document.body.scrollTop = 0; }
+
+        function checkMailClient() {
+            var testLink = document.createElement('a');
+            testLink.href = 'mailto:test@example.com';
+            if (testLink.protocol === 'mailto:') {
+                return true;
+            } else {
+                alert('No email client configured');
+                return false;
+            }
+        }
     </script>
 </body>
 </html>
